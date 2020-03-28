@@ -14,6 +14,12 @@ export default function Incidents() {
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    
+    var subTitle = "Escolha um dos casos abaixo e salve o dia.";
+    
+    if (total == 0) {
+        subTitle = "Não existem casos atualmente.";
+    }
 
     const navigation = useNavigation();
 
@@ -32,18 +38,18 @@ export default function Incidents() {
 
         setLoading(true);
 
-        const response = await api.get('incidents', {
+        const response = await api.get('/incidents', {
             params: { page }
         });
 
         setIncidents([...incidents, ...response.data]);
         setTotal(response.headers['x-total-count']);
-        setPage(page +1);
+        setPage(page+1);
         setLoading(false);
     }
     
     useEffect(() => {
-       
+       loadIncidents();
     }, []);
 
     return (
@@ -56,7 +62,7 @@ export default function Incidents() {
             </View>
 
             <Text style={styles.title}>Bem vindo</Text>
-            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia. </Text>
+            <Text style={styles.description}> { subTitle } </Text>
 
             <FlatList 
                 style={styles.incidentList}
