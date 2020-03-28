@@ -13,7 +13,7 @@ export default function Incidents() {
     const [incidents, setIncidents] = useState([]);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = usaState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
 
@@ -60,7 +60,7 @@ export default function Incidents() {
 
             <FlatList 
                 style={styles.incidentList}
-                data={[incidents]}
+                data={incidents}
                 keyExtractor={incident => String(incident.id)}
                 showsVerticalScrollIndicator={false}
                 onEndReached={loadIncidents}
