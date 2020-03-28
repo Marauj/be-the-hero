@@ -20,7 +20,7 @@ export default function Incidents() {
     if (total == 0) {
         subTitle = "Não existem casos atualmente.";
     }
-
+    
     const navigation = useNavigation();
 
     function navigateToDetail(incident) {
